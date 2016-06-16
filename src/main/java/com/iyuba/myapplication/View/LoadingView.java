@@ -2,27 +2,28 @@ package com.iyuba.myapplication.View;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.view.View;
-
 import com.iyuba.myapplication.ColorUtil;
 import com.iyuba.myapplication.R;
-
 /**
  * 作者：mingyu on 16-6-16 09:33
  * <p/>
  * 邮箱：Howard9891@163.com
  */
 public class LoadingView extends View {
-    private int count = 12;
+    private int count = 9;
     private Paint paint;
     private Context mContext;
+    boolean isBg = true;
     int j = 0;
     private float angle;
+    private int[] colors = new int[]{Color.RED,Color.GREEN,Color.CYAN,Color.RED,Color.GREEN,Color.CYAN,Color.RED,Color.GREEN,Color.CYAN};
     public LoadingView(Context context) {
         this(context, null);
     }
@@ -59,12 +60,33 @@ public class LoadingView extends View {
         }
         j++;
         handler.sendEmptyMessageDelayed(0,100);
+
+       /* if(isBg){
+            for(int i=0;i<count;i++){
+                paint.setColor(Color.GRAY);
+                canvas.drawCircle((float) (getWidth() / 2 + radius * Math.cos(i * angle)), (float) (getWidth() / 2 - radius * Math.sin(i * angle)), sradius, paint);
+            }
+
+        }else{
+            for(int i=0;i<count;i++){
+                if(i==j){
+                    paint.setColor(colors[j]);
+                }else{
+                    paint.setColor(Color.GRAY);
+                }
+                canvas.drawCircle((float) (getWidth() / 2 + radius * Math.cos(i * angle)), (float) (getWidth() / 2 - radius * Math.sin(i * angle)), sradius, paint);
+            }
+        }
+        j++;
+        j = j%count;
+        handler.sendEmptyMessageDelayed(0,300);*/
     }
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             invalidate();
+            isBg =false;
         }
     };
 }
