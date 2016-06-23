@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.iyuba.myapplication.View.ColorLoadingView;
 import com.iyuba.myapplication.View.LoadingView;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,42 +30,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        Button pop = (Button) findViewById(R.id.pop);
-        Button dismiss = (Button) findViewById(R.id.dismiss);
-        final LoadingView loadview = (LoadingView) findViewById(R.id.loadview);
-        pop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadview.setVisibility(View.VISIBLE);
-            }
-        });
-        dismiss.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadview.setVisibility(View.GONE);
-            }
-        });
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

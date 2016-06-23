@@ -1,6 +1,6 @@
 package com.iyuba.myapplication.View;
-
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -23,7 +23,8 @@ public class LoadingView extends View {
     boolean isBg = true;
     int j = 0;
     private float angle;
-    private int[] colors = new int[]{Color.RED,Color.GREEN,Color.CYAN,Color.RED,Color.GREEN,Color.CYAN,Color.RED,Color.GREEN,Color.CYAN};
+    private int startColor;
+    private int endColor;
     public LoadingView(Context context) {
         this(context, null);
     }
@@ -33,11 +34,23 @@ public class LoadingView extends View {
     public LoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
+        TypedArray typedArray =context.getTheme().obtainStyledAttributes(attrs,R.styleable.loadView,defStyleAttr,0);
+        int n = typedArray.getIndexCount();
+        for(int i=0;i<n;i++){
+            int attr =typedArray.getIndex(i);
+            switch (attr){
+                case R.styleable.loadView_startColor:
+                    startColor = typedArray.getColor(attr,Color.BLUE);
+                    break;
+                case R.styleable.loadView_endColor:
+                    endColor   = typedArray.getColor(attr,Color.TRANSPARENT);
+                    break;
+                default:
+                    break;
+            }
+        }
+        typedArray.recycle();
         init();
-    }
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     private void init() {
@@ -46,40 +59,18 @@ public class LoadingView extends View {
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
     }
-
     @Override
     protected void onDraw(Canvas canvas) {
-        Point center = new Point(getHeight() / 2, getWidth() / 2);
-        int sradius = 6;
-        int radius = getWidth() / 2 - sradius;
+        int dot_radius = 6;
+        int radius = getWidth() / 2 - dot_radius;
         for (int i = 0; i < count; i++) {
-            paint.setColor(ColorUtil.getNewColorByStartEndColor(mContext, j * 1.0f / count,R.color.blue,R.color.translant));
-            canvas.drawCircle((float) (getWidth() / 2 + radius * Math.cos(i * angle)), (float) (getWidth() / 2 - radius * Math.sin(i * angle)), 6, paint);
+            paint.setColor(ColorUtil.getNewColorByStartEndColor(mContext, j * 1.0f / count,startColor,endColor));
+            canvas.drawCircle((float) (getWidth() / 2 + radius * Math.cos(i * angle)), (float) (getWidth() / 2 - radius * Math.sin(i * angle)), dot_radius, paint);
             j++;
             j =j%count;
         }
         j++;
         handler.sendEmptyMessageDelayed(0,100);
-
-       /* if(isBg){
-            for(int i=0;i<count;i++){
-                paint.setColor(Color.GRAY);
-                canvas.drawCircle((float) (getWidth() / 2 + radius * Math.cos(i * angle)), (float) (getWidth() / 2 - radius * Math.sin(i * angle)), sradius, paint);
-            }
-
-        }else{
-            for(int i=0;i<count;i++){
-                if(i==j){
-                    paint.setColor(colors[j]);
-                }else{
-                    paint.setColor(Color.GRAY);
-                }
-                canvas.drawCircle((float) (getWidth() / 2 + radius * Math.cos(i * angle)), (float) (getWidth() / 2 - radius * Math.sin(i * angle)), sradius, paint);
-            }
-        }
-        j++;
-        j = j%count;
-        handler.sendEmptyMessageDelayed(0,300);*/
     }
     Handler handler = new Handler() {
         @Override

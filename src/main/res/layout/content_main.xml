@@ -6,25 +6,22 @@
     android:layout_height="match_parent"
  >
 
-    <Button
-        android:layout_marginTop="100dp"
-        android:id="@+id/pop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="pop"
-        />
-    <Button
-        android:id="@+id/dismiss"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pop"
-        android:text="dismiss"
-        />
     <com.iyuba.myapplication.View.LoadingView
         android:id="@+id/loadview"
         android:layout_centerInParent="true"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:visibility="gone"
+        app:startColor="@color/red"
+        app:endColor="@color/translant"
         />
+     <com.iyuba.myapplication.View.ColorLoadingView
+         android:id="@+id/loadview_color"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="100dp"
+         android:layout_width="40dp"
+         android:layout_height="40dp"
+
+
+        />
+
 </RelativeLayout>
