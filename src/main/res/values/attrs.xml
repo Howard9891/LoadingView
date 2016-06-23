@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="startColor"  format="color"></attr>
+    <attr name="endColor"   format="color"></attr>
+
     <declare-styleable name="loadView">
-        <attr name="startColor"  format="color"></attr>
-        <attr name="endColor"   format="color"></attr>
+        <attr name="startColor" ></attr>
+        <attr name="endColor"   ></attr>
     </declare-styleable>
 </resources>

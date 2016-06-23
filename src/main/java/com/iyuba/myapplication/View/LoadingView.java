@@ -23,8 +23,8 @@ public class LoadingView extends View {
     boolean isBg = true;
     int j = 0;
     private float angle;
-    private int startColor;
-    private int endColor;
+    private int startColor = Color.BLUE;
+    private int endColor = Color.TRANSPARENT;
     public LoadingView(Context context) {
         this(context, null);
     }
@@ -52,7 +52,6 @@ public class LoadingView extends View {
         typedArray.recycle();
         init();
     }
-
     private void init() {
         angle = (float) (2 * Math.PI / count);
         paint = new Paint();

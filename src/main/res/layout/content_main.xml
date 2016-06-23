@@ -5,14 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
  >
-
     <com.iyuba.myapplication.View.LoadingView
-        android:id="@+id/loadview"
+        android:id="@+id/loadview1"
         android:layout_centerInParent="true"
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:startColor="@color/red"
         app:endColor="@color/translant"
+        />
+    <com.iyuba.myapplication.View.LoadingView
+        android:id="@+id/loadview2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         />
      <com.iyuba.myapplication.View.ColorLoadingView
          android:id="@+id/loadview_color"
@@ -20,8 +26,6 @@
          android:layout_marginTop="100dp"
          android:layout_width="40dp"
          android:layout_height="40dp"
-
-
         />
 
 </RelativeLayout>
